@@ -1,9 +1,9 @@
 
-# conan-electric-fence
+# conan-bzip2
 
-[Conan.io](https://conan.io) package for Eletric Fence library
+[Conan.io](https://conan.io) package for BZip2 library
 
-The packages generated with this **conanfile** can be found in [conan.io](https://conan.io/source/electric-fence/2.2.0/lasote/stable).
+The packages generated with this **conanfile** can be found in [conan.io](https://conan.io/source/bzip2/1.0.6/lasote/stable).
 
 ## Build packages
 
@@ -13,23 +13,23 @@ Download conan client from [Conan.io](https://conan.io) and run:
     
 ## Upload packages to server
 
-    $ conan upload electric-fence/2.2.0@lasote/stable --all
+    $ conan upload bzip2/1.0.6@lasote/stable --all
     
 ## Reuse the packages
 
 ### Basic setup
 
-    $ conan install electric-fence/2.2.0@lasote/stable
+    $ conan install bzip2/1.0.6@lasote/stable
     
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
     
     [requires]
-    electric-fence/2.2.0@lasote/stable
+    bzip2/1.0.6@lasote/stable
 
     [options]
-    electric-fence:shared=true # false
+    bzip2:shared=true # false
     
     [generators]
     txt
