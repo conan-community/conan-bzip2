@@ -9,7 +9,7 @@ env:
     - CONAN_REFERENCE="bzip2/1.0.6"
     - CONAN_USERNAME="lasote"
     - CONAN_CHANNEL="ci"
-    - CONAN_TOTAL_PAGES=1
+    - CONAN_TOTAL_PAGES=4
     - CONAN_CURRENT_PAGE=1
     - 
   matrix:
