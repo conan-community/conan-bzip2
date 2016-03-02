@@ -16,6 +16,12 @@ class Bzip2Conan(ConanFile):
     exports = ["CMakeLists.txt"]
     url="http://github.com/lasote/conan-bzip2"
 
+    def config(self):
+        try: # Try catch can be removed when conan 0.8 is released
+            del self.settings.compiler.libcxx
+        except: 
+            pass        
+
     def source(self):
         zip_name = "bzip2-%s.tar.gz" % self.version
         download("http://www.bzip.org/%s/%s" % (self.version, zip_name), zip_name)
