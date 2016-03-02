@@ -34,7 +34,7 @@ class Bzip2Conan(ConanFile):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.ZIP_FOLDER_NAME)
         cmake = CMake(self.settings)
 
-        self.run("mkdir -p %s/_build"  % self.ZIP_FOLDER_NAME)
+        self.run("mkdir %s/_build"  % self.ZIP_FOLDER_NAME)
         cd_build = "cd %s/_build" % self.ZIP_FOLDER_NAME
         shared = "-DBUILD_SHARED_LIBS=ON" if self.options.shared else ""
         self.run('%s && cmake .. %s %s' % (cd_build, cmake.command_line, shared))
