@@ -15,6 +15,7 @@ class Bzip2Conan(ConanFile):
     default_options = "shared=False"
     exports = ["CMakeLists.txt"]
     url="http://github.com/lasote/conan-bzip2"
+    license="BSD-style license"
 
     def config(self):
         try: # Try catch can be removed when conan 0.8 is released
