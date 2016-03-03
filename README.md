@@ -1,7 +1,7 @@
 
 # conan-bzip2
 
-[Conan.io](https://conan.io) package for BZip2 library
+[Conan.io](https://conan.io) package for BZip2 library. http://www.bzip.org/
 
 The packages generated with this **conanfile** can be found in [conan.io](https://conan.io/source/bzip2/1.0.6/lasote/stable).
 
