@@ -47,6 +47,8 @@ class Bzip2Conan(ConanFile):
         self.copy("*bzip2", dst="bin", src=self.ZIP_FOLDER_NAME, keep_path=False)
         self.copy(pattern="*.so*", dst="lib", src=self.ZIP_FOLDER_NAME, keep_path=False)
         self.copy(pattern="*.a", dst="lib", src="%s/_build" % self.ZIP_FOLDER_NAME, keep_path=False)
+        self.copy(pattern="*.lib", dst="lib", src="%s/_build" % self.ZIP_FOLDER_NAME, keep_path=False)
+        self.copy(pattern="*.dll", dst="bin", src="%s/_build" % self.ZIP_FOLDER_NAME, keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ['bz2']
