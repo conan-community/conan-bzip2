@@ -11,8 +11,8 @@ class Bzip2Conan(ConanFile):
     ZIP_FOLDER_NAME = "bzip2-%s" % version
     generators = "cmake"
     settings =  "os", "compiler", "arch", "build_type"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    options = {"shared": [True, False], "fPIC": [True, False]}
+    default_options = "shared=False", "fPIC=True"
     exports = ["CMakeLists.txt"]
     url="http://github.com/lasote/conan-bzip2"
     license="BSD-style license"
@@ -38,7 +38,8 @@ class Bzip2Conan(ConanFile):
         self.run("cd %s &&  mkdir _build" % self.ZIP_FOLDER_NAME)
         cd_build = "cd %s/_build" % self.ZIP_FOLDER_NAME
         shared = "-DBUILD_SHARED_LIBS=ON" if self.options.shared else ""
-        self.run('%s && cmake .. %s %s' % (cd_build, cmake.command_line, shared))
+        fpic = "-DFPIC=ON" if self.options.fPIC else ""
+        self.run('%s && cmake .. %s %s %s' % (cd_build, cmake.command_line, shared, fpic))
         self.run("%s && cmake --build . %s" % (cd_build, cmake.build_config))
 
     def package(self):

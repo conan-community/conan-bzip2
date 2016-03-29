@@ -9,7 +9,13 @@ endif (MSVC OR MSVC90 OR MSVC10)
 
 set(bzip2_STAT_SRCS blocksort.c  bzlib.c compress.c  crctable.c  decompress.c  huffman.c randtable.c  unzcrash.c)
 
+
+
 add_library(bz2 ${bzip2_STAT_SRCS})
 add_executable(bzip2 bzip2.c)
 target_link_libraries(bzip2 bz2)
 
+if(FPIC)
+    MESSAGE(WARNING "ENABLED FPIC")
+	SET_TARGET_PROPERTIES(bz2 PROPERTIES COMPILE_FLAGS "-fPIC")
+endif()
