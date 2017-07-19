@@ -8,9 +8,9 @@ if __name__ == "__main__":
     if platform.system() == "Windows":  # Library not prepared to create a .lib to link with
         # Remove shared builds in Windows
         static_builds = []
-        for build in builder.builds:
-            if not build[1]["bzip2:shared"]:
-                static_builds.append([build[0], build[1]])
+        for settings, options, env_vars, build_requires in builder.builds:
+            if "bzip2:shared" not in options:
+                static_builds.append([settings, options, env_vars, build_requires])
 
         builder.builds = static_builds
     builder.run()
