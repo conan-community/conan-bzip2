@@ -18,8 +18,8 @@ class Bzip2Conan(ConanFile):
     license = "BSD-style license"
     description = "bzip2 is a freely available, patent free (see below), high-quality data " \
                   "compressor. It typically compresses files to within 10% to 15% of the best" \
-                  " available techniques (the PPM family of statistical compressors), whilst being " \
-                  "around twice as fast at compression and six times faster at decompression."
+                  " available techniques (the PPM family of statistical compressors), whilst " \
+                  "being around twice as fast at compression and six times faster at decompression."
 
     @property
     def zip_folder_name(self):
