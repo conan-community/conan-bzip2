@@ -38,7 +38,7 @@ class Bzip2Conan(ConanFile):
     def build(self):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.zip_folder_name)
         with tools.chdir(self.zip_folder_name):
-            tools.mkdir("_build")
+            os.mkdir("_build")
             with tools.chdir("_build"):
                 cmake = CMake(self)
                 if self.options.fPIC:
