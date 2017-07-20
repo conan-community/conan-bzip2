@@ -9,7 +9,7 @@ if __name__ == "__main__":
         # Remove shared builds in Windows
         static_builds = []
         for settings, options, env_vars, build_requires in builder.builds:
-            if "bzip2:shared" not in options:
+            if not ("bzip2:shared" in options and options["bzip2:shared"]):
                 static_builds.append([settings, options, env_vars, build_requires])
 
         builder.builds = static_builds
