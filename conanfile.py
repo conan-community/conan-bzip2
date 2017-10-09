@@ -50,6 +50,7 @@ class Bzip2Conan(ConanFile):
         self.copy("*.h", "include", "%s" % self.zip_folder_name, keep_path=False)
         self.copy("*bzip2", dst="bin", src=self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.so*", dst="lib", src=self.zip_folder_name, keep_path=False)
+        self.copy(pattern="*.dylib", dst="lib", src=self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.a", dst="lib", src="%s/_build" % self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.lib", dst="lib", src="%s/_build" % self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.dll", dst="bin", src="%s/_build" % self.zip_folder_name, keep_path=False)
