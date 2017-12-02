@@ -14,7 +14,7 @@ class Bzip2Conan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = "shared=False", "fPIC=True"
     exports = ["CMakeLists.txt"]
-    url = "http://github.com/lasote/conan-bzip2"
+    url = "https://github.com/lasote/conan-bzip2"
     license = "BSD-style license"
     description = "bzip2 is a freely available, patent free (see below), high-quality data " \
                   "compressor. It typically compresses files to within 10% to 15% of the best" \
