@@ -9,8 +9,11 @@ class DefaultNameConan(ConanFile):
     generators = "cmake"
 
     def build(self):
+        print(self.build_folder)
+        print(self.source_folder)
+        print(os.getcwd())
         cmake = CMake(self)
-        cmake.configure(source_dir="../../", build_dir="./")
+        cmake.configure()
         cmake.build()
 
     def imports(self):
