@@ -34,7 +34,7 @@ class Bzip2Conan(ConanFile):
         tools.check_md5(zip_name, "00b516f4704d4a7cb50a1d97e6e8e15b")
         tools.unzip(zip_name)
         os.unlink(zip_name)
-        tools.replace_in_file("bzip2-1.0.6/bzip2.c", r"<sys\stat.h>", "<sys/stat.h>")
+        tools.replace_in_file("bzip2-%s/bzip2.c" % self.version, r"<sys\stat.h>", "<sys/stat.h>")
 
     def build(self):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.zip_folder_name)
