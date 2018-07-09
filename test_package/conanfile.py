@@ -1,6 +1,7 @@
-from conans.model.conan_file import ConanFile
+from conans.model.conan_file import ConanFile, tools
 from conans import CMake
 import os
+
 
 class DefaultNameConan(ConanFile):
     name = "DefaultName"
@@ -21,4 +22,7 @@ class DefaultNameConan(ConanFile):
         self.copy(pattern="*.dylib", dst="bin", src="lib")
         
     def test(self):
-        self.run(".%sbin%sbzip2 --help" % (os.sep, os.sep))
+        if self.settings.os == "Windows" and tools.os_info.is_linux:
+            self.output.warn("Skipping run cross built package")
+        else:
+            self.run(".%sbin%sbzip2 --help" % (os.sep, os.sep))

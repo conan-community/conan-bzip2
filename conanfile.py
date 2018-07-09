@@ -38,6 +38,8 @@ class Bzip2Conan(ConanFile):
     def build(self):
         shutil.move("CMakeLists.txt", "%s/CMakeLists.txt" % self.zip_folder_name)
         with tools.chdir(self.zip_folder_name):
+            if self.settings.os == "Windows" and tools.os_info.is_linux:
+                tools.replace_in_file("bzip2.c", "sys\\stat.h", "sys/stat.h")
             os.mkdir("_build")
             with tools.chdir("_build"):
                 cmake = CMake(self)
