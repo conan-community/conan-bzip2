@@ -51,7 +51,7 @@ class Bzip2Conan(ConanFile):
                 cmake.build(build_dir=".")
 
     def package(self):
-        self.copy("*.h", "include", "%s" % self.zip_folder_name, keep_path=False)
+        self.copy("bzlib.h", "include", "%s" % self.zip_folder_name, keep_path=False)
         self.copy("*bzip2", dst="bin", src=self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.so*", dst="lib", src=self.zip_folder_name, keep_path=False)
         self.copy(pattern="*.dylib", dst="lib", src=self.zip_folder_name, keep_path=False)
