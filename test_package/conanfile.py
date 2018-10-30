@@ -22,7 +22,7 @@ class DefaultNameConan(ConanFile):
         self.copy(pattern="*.dylib", dst="bin", src="lib")
         
     def test(self):
-        if self.settings.os == "Windows" and tools.os_info.is_linux:
+        if tools.cross_building(self.settings):
             self.output.warn("Skipping run cross built package")
         else:
             self.run(".%sbin%sbzip2 --help" % (os.sep, os.sep))
