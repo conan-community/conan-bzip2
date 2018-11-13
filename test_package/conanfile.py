@@ -1,28 +1,24 @@
-from conans.model.conan_file import ConanFile, tools
-from conans import CMake
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
+from conans import ConanFile, CMake, tools
 
 
-class DefaultNameConan(ConanFile):
-    name = "DefaultName"
-    version = "0.1"
+class TestPackageConan(ConanFile):
     settings = "os", "compiler", "arch", "build_type"
     generators = "cmake"
 
     def build(self):
-        print(self.build_folder)
-        print(self.source_folder)
-        print(os.getcwd())
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-
-    def imports(self):
-        self.copy(pattern="*.dll", dst="bin", src="bin")
-        self.copy(pattern="*.dylib", dst="bin", src="lib")
         
     def test(self):
+        assert os.path.isfile(os.path.join(self.deps_cpp_info["bzip2"].rootpath, "licenses", "LICENSE"))
         if tools.cross_building(self.settings):
             self.output.warn("Skipping run cross built package")
-        else:
-            self.run(".%sbin%sbzip2 --help" % (os.sep, os.sep))
+            return
+
+        bin_path = os.path.join("bin", "test_package")
+        self.run("%s --help" % bin_path, run_environment=True)

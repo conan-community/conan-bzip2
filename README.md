@@ -18,6 +18,7 @@ If you handle multiple dependencies in your project is better to add a *conanfil
 
     [options]
     bzip2:shared=true # false
+    bzip2:fPIC=true # false (only available for Linux and Macos)
 
     [generators]
     cmake
