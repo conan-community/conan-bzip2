@@ -21,8 +21,8 @@ If you handle multiple dependencies in your project is better to add a *conanfil
     bzip2/1.0.6@conan/stable
 
     [options]
-    bzip2:shared=true # false
-    bzip2:fPIC=true # false (only available for Linux and Macos)
+    bzip2:shared=True # False
+    bzip2:fPIC=True # False (only available for Linux and Macos)
 
     [generators]
     cmake
