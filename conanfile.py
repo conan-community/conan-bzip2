@@ -7,7 +7,7 @@ from conans import ConanFile, CMake, tools
 
 class Bzip2Conan(ConanFile):
     name = "bzip2"
-    version = "1.0.6"    
+    version = "1.0.6"
     url = "https://github.com/conan-community/conan-bzip2"
     homepage = "http://www.bzip.org"
     author = "Conan Community"
@@ -21,7 +21,7 @@ class Bzip2Conan(ConanFile):
     exports_sources = "CMakeLists.txt"
     generators = "cmake"
     _source_subfolder = "source_subfolder"
-    
+
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
@@ -38,7 +38,10 @@ class Bzip2Conan(ConanFile):
         os.rename(folder_name, self._source_subfolder)
 
     def _configure_cmake(self):
+        major = self.version.split(".")[0]
         cmake = CMake(self)
+        cmake.definitions["BZ2_VERSION_STRING"] = self.version
+        cmake.definitions["BZ2_VERSION_MAJOR"] = major
         cmake.configure()
         return cmake
 
