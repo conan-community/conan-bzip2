@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.1.2)
 project(bzip2 C)
 
+include(GNUInstallDirs)
+
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
