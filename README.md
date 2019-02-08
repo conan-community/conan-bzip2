@@ -1,45 +1,68 @@
-[![Download](https://api.bintray.com/packages/conan-community/conan/bzip2%3Aconan/images/download.svg)](https://bintray.com/conan-community/conan/bzip2%3Aconan/_latestVersion)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/ConanCIintegration/conan-bzip2?svg=true)](https://ci.appveyor.com/project/ConanCIintegration/conan-bzip2)
-[![Build Status](https://travis-ci.org/conan-community/conan-bzip2.svg)](https://travis-ci.org/conan-community/conan-bzip2)
-# Conan BZip2
+[![Download](https://api.bintray.com/packages/conan-community/conan/bzip2%3Aconan/images/download.svg) ](https://bintray.com/conan-community/conan/bzip2%3Aconan/_latestVersion)
+[![Build Status Travis](https://travis-ci.org/conan-community/conan-bzip2.svg)](https://travis-ci.org/conan-community/conan-bzip2)
+[![Build Status AppVeyor](https://ci.appveyor.com/api/projects/status/github/conan-community/conan-bzip2?svg=true)](https://ci.appveyor.com/project/ConanCIintegration/conan-bzip2)
 
- ![logo](logo.png)
+## Conan package recipe for [*bzip2*](http://www.bzip.org)
 
-Conan package for BZip2 library. http://www.bzip.org/
+bzip2 is a free and open-source file compression program that uses the Burrows–Wheeler algorithm.
 
-The packages generated with this **conanfile** can be found in [Bintray](https://bintray.com/conan-community/conan/bzip2%3Aconan).
+The packages generated with this **conanfile** can be found on [Bintray](https://bintray.com/conan-community/conan/bzip2%3Aconan).
 
-## Basic setup
+
+## Issues
+
+If you wish to report an issue or make a request for a package, please do so here:
+
+[Issues Tracker](https://github.com/conan-community/community/issues)
+
+
+## For Users
+
+### Basic setup
 
     $ conan install bzip2/1.0.6@conan/stable
 
-## Project setup
+### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
     bzip2/1.0.6@conan/stable
 
-    [options]
-    bzip2:shared=True # False
-    bzip2:fPIC=True # False (only available for Linux and Macos)
-
     [generators]
     cmake
 
-## Issues
+Complete the installation of requirements for your project running:
 
-If you wish to report an issue for Conan Community related to this package or any other, please do so here:
+    $ mkdir build && cd build && conan install ..
 
-[Conan Community Issues](https://github.com/conan-community/community/issues)
-
-## Wish List
-
-If you wish to make a request for Conan Community creating a new package, please do so here:
-
-[Conan Wish List](https://github.com/conan-io/wishlist)
+Note: It is recommended that you run conan install from a build directory and not the root of the project directory.  This is because conan generates *conanbuildinfo* files specific to a single build configuration which by default comes from an autodetected default profile located in ~/.conan/profiles/default .  If you pass different build configuration options to conan install, it will generate different *conanbuildinfo* files.  Thus, they should not be added to the root of the project, nor committed to git.
 
 
-## License
+## Build and package
+
+The following command both runs all the steps of the conan file, and publishes the package to the local system cache.  This includes downloading dependencies from "build_requires" and "requires" , and then running the build() method.
+
+    $ conan create . conan/stable
+
+
+### Available Options
+| Option        | Default | Possible Values  |
+| ------------- |:----------------- |:------------:|
+| shared      | False |  [True, False] |
+| fPIC      | True |  [True, False] |
+
+
+## Add Remote
+
+Conan Community has its own Bintray repository, however, we are working to distribute all package in the Conan Center:
+
+    $ conan remote add conan-center "https://conan.bintray.com"
+
+
+## Conan Recipe License
+
+NOTE: The conan recipe license applies only to the files of this recipe, which can be used to build and package bzip2.
+It does *not* in any way apply or is related to the actual software being packaged.
 
 [MIT](LICENSE)
