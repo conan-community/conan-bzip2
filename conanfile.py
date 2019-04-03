@@ -15,8 +15,8 @@ class Bzip2Conan(ConanFile):
     description = "bzip2 is a free and open-source file compression program that uses the Burrows–Wheeler algorithm."
     topics = ("conan", "bzip2", "data-compressor", "file-compression")
     settings = "os", "compiler", "arch", "build_type"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = "shared=False", "fPIC=True"
+    options = {"shared": [True, False], "fPIC": [True, False], "build_executable": [True, False]}
+    default_options = "shared=False", "fPIC=True", "build_executable=True"
     exports = "LICENSE"
     exports_sources = "CMakeLists.txt"
     generators = "cmake"
@@ -42,6 +42,7 @@ class Bzip2Conan(ConanFile):
         cmake = CMake(self)
         cmake.definitions["BZ2_VERSION_STRING"] = self.version
         cmake.definitions["BZ2_VERSION_MAJOR"] = major
+        cmake.definitions["BZ2_BUILD_EXE"] = "ON" if self.options.build_executable else "OFF"
         cmake.configure()
         return cmake
 
