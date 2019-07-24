@@ -3,13 +3,6 @@ build: false
 environment:
     PYTHON_HOME: "C:\\Python37"
 
-    CONAN_REFERENCE: "bzip2/1.0.6"
-    CONAN_USERNAME: "conan"
-    CONAN_LOGIN_USERNAME: "conanbot"
-    CONAN_CHANNEL: "stable"
-    CONAN_UPLOAD: "https://api.bintray.com/conan/conan-community/conan"
-    CONAN_STABLE_BRANCH_PATTERN: "release/*"
-
     matrix:
         - MINGW_CONFIGURATIONS: "8@x86@dwarf2@posix"
         - MINGW_CONFIGURATIONS: "7@x86@dwarf2@posix"
