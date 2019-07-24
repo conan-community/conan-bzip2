@@ -1,26 +1,27 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import os
 from conans import ConanFile, CMake, tools
+from conans.tools import Version
 
 
 class Bzip2Conan(ConanFile):
     name = "bzip2"
-    version = "1.0.6"
+    version = "1.0.8"
     url = "https://github.com/conan-community/conan-bzip2"
     homepage = "http://www.bzip.org"
     author = "Conan Community"
-    license = "bzip2-1.0.6"
+    license = "bzip2-1.0.8"
     description = "bzip2 is a free and open-source file compression program that uses the Burrows–Wheeler algorithm."
     topics = ("conan", "bzip2", "data-compressor", "file-compression")
     settings = "os", "compiler", "arch", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False], "build_executable": [True, False]}
-    default_options = "shared=False", "fPIC=True", "build_executable=True"
+    default_options = {"shared": False, "fPIC": True, "build_executable": True}
     exports = "LICENSE"
     exports_sources = "CMakeLists.txt"
     generators = "cmake"
-    _source_subfolder = "source_subfolder"
+
+    @property
+    def _source_subfolder(self):
+        return "source_subfolder"
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -30,15 +31,14 @@ class Bzip2Conan(ConanFile):
         del self.settings.compiler.libcxx
 
     def source(self):
+        source_url = "https://sourceware.org/pub/bzip2/bzip2"
         folder_name = "%s-%s" % (self.name, self.version)
-        zip_name = "%s.tar.gz" % folder_name
-        sha256 = "a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd"
-        url = "https://bintray.com/conan/Sources"
-        tools.get(url="%s/download_file?file_path=%s" % (url, zip_name), sha256=sha256, filename=zip_name)
+        sha256 = "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269"
+        tools.get("{}-{}.tar.gz".format(source_url, self.version), sha256=sha256)
         os.rename(folder_name, self._source_subfolder)
 
     def _configure_cmake(self):
-        major = self.version.split(".")[0]
+        major = Version(self.version).major
         cmake = CMake(self)
         cmake.definitions["BZ2_VERSION_STRING"] = self.version
         cmake.definitions["BZ2_VERSION_MAJOR"] = major
@@ -47,7 +47,6 @@ class Bzip2Conan(ConanFile):
         return cmake
 
     def build(self):
-        tools.replace_in_file(os.path.join(self._source_subfolder, "bzip2.c"), r"<sys\stat.h>", "<sys/stat.h>")
         cmake = self._configure_cmake()
         cmake.build()
 
