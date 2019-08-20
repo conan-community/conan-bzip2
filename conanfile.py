@@ -31,6 +31,7 @@ class Bzip2Conan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         source_url = "https://sourceware.org/pub/bzip2/bzip2"
