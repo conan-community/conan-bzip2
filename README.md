@@ -1,3 +1,5 @@
+**OBSOLETE** The recipe is now in https://github.com/conan-io/conan-center-index
+
 [![Download](https://api.bintray.com/packages/conan-community/conan/bzip2%3Aconan/images/download.svg) ](https://bintray.com/conan-community/conan/bzip2%3Aconan/_latestVersion)
 [![Build Status Travis](https://travis-ci.org/conan-community/conan-bzip2.svg)](https://travis-ci.org/conan-community/conan-bzip2)
 [![Build Status AppVeyor](https://ci.appveyor.com/api/projects/status/github/conan-community/conan-bzip2?svg=true)](https://ci.appveyor.com/project/ConanCIintegration/conan-bzip2)
